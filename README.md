@@ -2,19 +2,25 @@
 
 Trackr is a mobile application written in react-native that tracks a users mood over time and compares it with other health stats to promote better mental health. Takes advantage of HealthKit.
 
-## Mocks
+## Mockups
 
-Log
-![log](./assets/docs/Log.png)
+Below are the initial mockups to guide development. Features will most likely be adjusted and change throughout versioning.
 
-Compare
-![compare1](./assets/docs/Compare 1.png)
-![compare2](./assets/docs/Compare 2.png)
-![compare3](./assets/docs/Compare 3.png)
+### Log
 
-Trends
-![trends1](./assets/docs/Trends.png)
-![trends1](./assets/docs/Trends 2.png)
+<img src="./assets/docs/log.png" alt="log" width="150">
+
+
+### Compare
+
+<img src="./assets/docs/compare1.png" alt="compare1" width="150">
+<img src="./assets/docs/compare2.png" alt="compare2" width="150">
+<img src="./assets/docs/compare3.png" alt="compare3" width="150">
+
+### Trends
+
+<img src="./assets/docs/trends1.png" alt="trends1" width="150">
+<img src="./assets/docs/trends2.png" alt="trends2" width="150">
 
 ## License
 
