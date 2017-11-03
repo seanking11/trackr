@@ -8,7 +8,7 @@ Below are the initial mockups to guide development. Features will most likely be
 
 ### Log
 
-<img src="./assets/docs/log.png" alt="log" width="150">
+<img src="./assets/docs/Log.png" alt="log" width="150">
 
 
 ### Compare
