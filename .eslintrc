@@ -1,0 +1,37 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true,
+    "mocha": true
+  },
+  "rules": {
+    "semi" : [2, "never"],
+    "max-len": [2, 120, 2],
+    "generator-star-spacing": 0,
+    "jsx-quotes": [2, "prefer-single"],
+    "comma-dangle": [2, "never"],
+    "no-underscore-dangle": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/forbid-prop-types": 0,
+    "react/no-unescaped-entities": 0,
+    "react/require-default-props": 0,
+    "import/no-named-as-default": 0,
+    "import/extensions": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "new-cap": [2, {
+      "capIsNewExceptions": ["Immutable.Map", "Immutable.Set", "Immutable.List"]
+    }],
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 0,
+    "arrow-parens": 0,
+    "no-param-reassign": [2, { "props": false }],
+    "global-require": 0,
+    "no-nested-ternary": 0,
+    "no-console": [2, { allow: ['info', 'warn', 'error'] }],
+    "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+    "import/no-named-default" : 0
+  }
+}
