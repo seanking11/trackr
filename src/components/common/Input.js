@@ -42,4 +42,4 @@ const Input = ({ label, onChangeText, value, placeholder, secureTextEntry }) => 
   )
 }
 
-export default Input
+export { Input }
