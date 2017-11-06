@@ -5,15 +5,15 @@ import { Input, Button, Spinner, Card, CardSection } from './common'
 import { emailChanged, passwordChanged, loginUser } from '../actions'
 
 class LoginForm extends Component {
-  onEmailChange(text) {
+  onEmailChange = text => {
     this.props.emailChanged(text)
   }
 
-  onPasswordChange(text) {
+  onPasswordChange = text => {
     this.props.passwordChanged(text)
   }
 
-  onButtonPress() {
+  onButtonPress = () => {
     const { email, password } = this.props
 
     this.props.loginUser({ email, password })
@@ -26,7 +26,7 @@ class LoginForm extends Component {
           <Input
             label='Email'
             placeholder='email@gmail.com'
-            onChangeText={this.onEmailChange.bind(this)}
+            onChangeText={this.onEmailChange}
             value={this.props.email}
           />
         </CardSection>
@@ -36,7 +36,7 @@ class LoginForm extends Component {
             secureTextEntry
             label='Password'
             placeholder='password'
-            onChangeText={this.onPasswordChange.bind(this)}
+            onChangeText={this.onPasswordChange}
             value={this.props.password}
           />
         </CardSection>
@@ -49,7 +49,7 @@ class LoginForm extends Component {
           {this.props.loading ? (
             <Spinner size='large' />
           ) : (
-            <Button onPress={this.onButtonPress.bind(this)}>
+            <Button onPress={this.onButtonPress}>
               Login
             </Button>
           )}

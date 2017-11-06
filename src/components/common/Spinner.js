@@ -17,4 +17,4 @@ const Spinner = ({ size }) => (
   </View>
 )
 
-export { Spinner }
+export { Spinner as default }

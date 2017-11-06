@@ -36,4 +36,4 @@ const Button = ({ onPress, children }) => {
   )
 }
 
-export { Button }
+export { Button as default }

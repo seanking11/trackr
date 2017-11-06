@@ -27,4 +27,4 @@ const Header = props => {
   )
 }
 
-export { Header }
+export { Header as default }

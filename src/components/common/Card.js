@@ -24,4 +24,4 @@ const Card = props => (
   </View>
 )
 
-export { Card }
+export { Card as default }
