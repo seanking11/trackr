@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { View, Slider } from 'react-native'
 import { Button, CardSection } from './common'
 import DataList from './DataList'
+import { logMood, updateSlider } from '../actions'
 
 const styles = {
   containerStyles: {
@@ -12,8 +14,10 @@ const styles = {
 class MoodLogger extends Component {
   state = { sliderVal: 5 }
 
-  componentDidMount() {
-    console.log(this.state.sliderVal)
+  onButtonPress = () => {
+    const { moodValue, dateLogged } = this.props
+
+    this.props.logMood({ moodValue, dateLogged })
   }
 
   render() {
@@ -25,12 +29,12 @@ class MoodLogger extends Component {
             minimumValue={0}
             step={1}
             value={this.state.sliderVal}
-            onSlidingComplete={this.onSlide}
+            onSlidingComplete={value => this.props.updateSlider(value)}
           />
         </View>
 
         <CardSection>
-          <Button onPress={console.log(this.state.sliderVal)}>Log Data</Button>
+          <Button onPress={this.onButtonPress}>Log Data</Button>
         </CardSection>
 
         <CardSection>
@@ -41,4 +45,10 @@ class MoodLogger extends Component {
   }
 }
 
-export default MoodLogger
+const mapStateToProps = state => {
+  const { moodValue, dateLogged } = state.log
+
+  return { moodValue, dateLogged }
+}
+
+export default connect(mapStateToProps, { updateSlider, logMood })(MoodLogger)
