@@ -1,24 +1,28 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import { FlatList, Text } from 'react-native'
+import { ScrollView } from 'react-native'
+import { List } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { moodsFetch } from '../actions'
+import DataListItem from './DataListItem'
 
 class DataList extends Component {
   componentWillMount() {
     this.props.moodsFetch()
   }
 
-  componentWillReceiveProps() {
-    console.log(this.props)
-  }
-
   render() {
     return (
-      <FlatList
-        data={this.props.data}
-        renderItem={({ item }) => <Text>{item.moodValue} - {new Date(item.dateLogged).toString()}</Text>}
-      />
+      <ScrollView>
+        <List>
+          {this.props.data.map(item => (
+            <DataListItem
+              moodValue={item.moodValue}
+              dateLogged={item.dateLogged}
+            />
+          ))}
+        </List>
+      </ScrollView>
     )
   }
 }
