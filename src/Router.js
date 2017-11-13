@@ -3,9 +3,14 @@ import { Scene, Router } from 'react-native-router-flux'
 import LoginForm from './components/LoginForm'
 import MoodLogger from './components/MoodLogger'
 import Chart from './components/Chart'
+import Colors from './components/common/Colors'
 
 const RouterComponent = () => (
-  <Router>
+  <Router
+    sceneStyle={{
+      backgroundColor: Colors.backgroundGray
+    }}
+  >
     <Scene key='root' hideNavBar>
       <Scene key='auth'>
         <Scene
