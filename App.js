@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
 import ReduxThunk from 'redux-thunk'
 import firebase from 'firebase'
 import reducers from './src/reducers'
 import Router from './src/Router'
+
+const store = createStore(reducers, {}, compose(
+  applyMiddleware(ReduxThunk),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+))
 
 class App extends Component {
   componentWillMount() {
@@ -22,7 +27,7 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
+      <Provider store={store}>
         <Router />
       </Provider>
     )

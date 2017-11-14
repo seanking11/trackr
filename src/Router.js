@@ -2,9 +2,15 @@ import React from 'react'
 import { Scene, Router } from 'react-native-router-flux'
 import LoginForm from './components/LoginForm'
 import MoodLogger from './components/MoodLogger'
+import Chart from './components/Chart'
+import Colors from './components/common/Colors'
 
 const RouterComponent = () => (
-  <Router>
+  <Router
+    sceneStyle={{
+      backgroundColor: Colors.backgroundGray
+    }}
+  >
     <Scene key='root' hideNavBar>
       <Scene key='auth'>
         <Scene
@@ -16,10 +22,15 @@ const RouterComponent = () => (
 
       <Scene key='main'>
         <Scene
-          initial
           key='log'
           component={MoodLogger}
           title='Log Mood'
+        />
+        <Scene
+          initial
+          key='chart'
+          component={Chart}
+          title='Charts'
         />
       </Scene>
     </Scene>
