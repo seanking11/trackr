@@ -2,21 +2,40 @@ import React, { Component } from 'react'
 import {
   VictoryBar,
   VictoryChart,
-  VictoryAxis,
-  VictoryTheme
+  VictoryAxis
 } from 'victory-native'
 import { View, Text } from 'react-native'
+import Gradient from './Gradient'
+import Colors from './common/Colors'
 
-const data1992 = [
-  { quarter: 3, earnings: 14250 },
-  { quarter: 2, earnings: 16500 },
-  { quarter: 1, earnings: 13000 },
-  { quarter: 4, earnings: 19000 }
+const mockData = [
+  { mood: 7, day: 'S' },
+  { mood: 3, day: 'M' },
+  { mood: 5, day: 'T' },
+  { mood: 6, day: 'W' },
+  { mood: 7, day: 'R' },
+  { mood: 10, day: 'F' },
+  { mood: 8, day: 'S' }
 ]
 
 const animation = {
   duration: 2000,
   onLoad: { duration: 1000 }
+}
+
+const styles = {
+  victoryBarStyles: {
+    data: {
+      width: 1,
+      strokeWidth: 4,
+      stroke: 'url(#linearGradient)',
+      fill: 'url(#linearGradient)',
+      strokeLinejoin: 'round'
+    },
+    parent: {
+      backgroundColor: Colors.cardBackground
+    }
+  }
 }
 
 class Chart extends Component {
@@ -30,24 +49,35 @@ class Chart extends Component {
         <Text>Moods</Text>
         <VictoryChart
           domainPadding={40}
-          theme={VictoryTheme.material}
+          // padding={{ left: 42, right: 42, top: 14, bottom: 10 }}
+          height={200}
         >
+          <Gradient
+            id='linearGradient'
+            topColor={Colors.moodGreenTop}
+            bottomColor={Colors.moodGreenBottom}
+          />
           <VictoryAxis
-            tickValues={[1, 2, 3, 4]}
-            tickFormat={['Quarter 1', 'Quarter 2', 'Quarter 3', 'Quarter 4']}
+            style={{
+              axis: { stroke: Colors.textColor, strokeWidth: 0.5 },
+              ticks: { fill: Colors.textColor },
+              tickLabels: { padding: 4, fill: Colors.textColor }
+            }}
           />
           <VictoryAxis
             dependentAxis
-            tickFormat={(x) => (`$${x / 1000}k`)}
+            tickValues={[0, 10]}
+            style={{
+              axis: { stroke: null },
+              ticks: { stroke: null },
+              tickLabels: { padding: 4, fill: Colors.textColor }
+            }}
           />
           <VictoryBar
-            style={{
-              data: { width: 13, strokeWidth: 0, fill: 'navy' },
-              labels: { fill: 'white' }
-            }}
-            data={data1992}
-            x='quarter'
-            y='earnings'
+            style={styles.victoryBarStyles}
+            data={mockData}
+            x='day'
+            y='mood'
             animate={animation}
           />
         </VictoryChart>
