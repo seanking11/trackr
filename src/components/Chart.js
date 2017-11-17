@@ -48,8 +48,7 @@ class Chart extends Component {
       <View>
         <Text>Moods</Text>
         <VictoryChart
-          domainPadding={40}
-          // padding={{ left: 42, right: 42, top: 14, bottom: 10 }}
+          domainPadding={{ x: 40, y: 0 }}
           height={200}
         >
           <Gradient
@@ -63,6 +62,7 @@ class Chart extends Component {
               ticks: { fill: Colors.textColor },
               tickLabels: { padding: 4, fill: Colors.textColor }
             }}
+            offsetY={45}
           />
           <VictoryAxis
             dependentAxis
