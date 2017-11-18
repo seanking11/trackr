@@ -5,7 +5,7 @@ import {
   VictoryAxis
 } from 'victory-native'
 import { View, Text } from 'react-native'
-import Gradient from './Gradient'
+import { Gradient, CirclesSection } from './index'
 import Colors from './common/Colors'
 
 const mockData = [
@@ -81,6 +81,13 @@ class Chart extends Component {
             animate={animation}
           />
         </VictoryChart>
+        <CirclesSection
+          compared={{
+            name: 'Steps',
+            topColor: '#FFEE00',
+            bottomColor: '#FF00A7'
+          }}
+        />
       </View>
     )
   }
