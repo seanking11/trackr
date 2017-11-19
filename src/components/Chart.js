@@ -35,6 +35,15 @@ const styles = {
     parent: {
       backgroundColor: Colors.cardBackground
     }
+  },
+  viewStyles: {
+    backgroundColor: Colors.cardBackground,
+    paddingBottom: 15,
+    marginRight: 20,
+    marginLeft: 20,
+    paddingLeft: -20,
+    marginVertical: 10,
+    borderRadius: 5
   }
 }
 
@@ -47,47 +56,50 @@ class Chart extends Component {
     return (
       <View>
         <Text>Moods</Text>
-        <VictoryChart
-          domainPadding={{ x: 40, y: 0 }}
-          height={200}
-        >
-          <Gradient
-            id='linearGradient'
-            topColor={Colors.moodGreenTop}
-            bottomColor={Colors.moodGreenBottom}
-          />
-          <VictoryAxis
-            style={{
-              axis: { stroke: Colors.textColor, strokeWidth: 0.5 },
-              ticks: { fill: Colors.textColor },
-              tickLabels: { padding: 4, fill: Colors.textColor }
+        <View style={styles.viewStyles}>
+          <VictoryChart
+            domainPadding={{ x: 40, y: 0 }}
+            height={200}
+            // width={350}
+          >
+            <Gradient
+              id='linearGradient'
+              topColor={Colors.moodGreenTop}
+              bottomColor={Colors.moodGreenBottom}
+            />
+            <VictoryAxis
+              style={{
+                axis: { stroke: Colors.textColor, strokeWidth: 0.5 },
+                ticks: { fill: Colors.textColor },
+                tickLabels: { padding: 4, fill: Colors.textColor }
+              }}
+              offsetY={45}
+            />
+            <VictoryAxis
+              dependentAxis
+              tickValues={[0, 10]}
+              style={{
+                axis: { stroke: null },
+                ticks: { stroke: null },
+                tickLabels: { padding: 4, fill: Colors.textColor }
+              }}
+            />
+            <VictoryBar
+              style={styles.victoryBarStyles}
+              data={mockData}
+              x='day'
+              y='mood'
+              animate={animation}
+            />
+          </VictoryChart>
+          <CirclesSection
+            compared={{
+              name: 'Steps',
+              topColor: '#FFEE00',
+              bottomColor: '#FF00A7'
             }}
-            offsetY={45}
           />
-          <VictoryAxis
-            dependentAxis
-            tickValues={[0, 10]}
-            style={{
-              axis: { stroke: null },
-              ticks: { stroke: null },
-              tickLabels: { padding: 4, fill: Colors.textColor }
-            }}
-          />
-          <VictoryBar
-            style={styles.victoryBarStyles}
-            data={mockData}
-            x='day'
-            y='mood'
-            animate={animation}
-          />
-        </VictoryChart>
-        <CirclesSection
-          compared={{
-            name: 'Steps',
-            topColor: '#FFEE00',
-            bottomColor: '#FF00A7'
-          }}
-        />
+        </View>
       </View>
     )
   }
