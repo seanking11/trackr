@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import _ from 'lodash'
 import {
   VictoryBar,
   VictoryChart,
   VictoryAxis
 } from 'victory-native'
 import { View, Text } from 'react-native'
+import { moodsFetch } from '../actions'
+import selectors from '../selectors/selectors'
 import { Gradient, CirclesSection } from './index'
 import Colors from './common/Colors'
 
@@ -49,60 +53,65 @@ const styles = {
 
 class Chart extends Component {
   componentWillMount() {
-    console.log('hi')
+    this.props.moodsFetch()
   }
 
   render() {
     return (
-      <View>
-        <Text>Moods</Text>
-        <View style={styles.viewStyles}>
-          <VictoryChart
-            domainPadding={{ x: 40, y: 0 }}
-            height={200}
-            // width={350}
-          >
-            <Gradient
-              id='linearGradient'
-              topColor={Colors.moodGreenTop}
-              bottomColor={Colors.moodGreenBottom}
-            />
-            <VictoryAxis
-              style={{
-                axis: { stroke: Colors.textColor, strokeWidth: 0.5 },
-                ticks: { fill: Colors.textColor },
-                tickLabels: { padding: 4, fill: Colors.textColor }
-              }}
-              offsetY={45}
-            />
-            <VictoryAxis
-              dependentAxis
-              tickValues={[0, 10]}
-              style={{
-                axis: { stroke: null },
-                ticks: { stroke: null },
-                tickLabels: { padding: 4, fill: Colors.textColor }
-              }}
-            />
-            <VictoryBar
-              style={styles.victoryBarStyles}
-              data={mockData}
-              x='day'
-              y='mood'
-              animate={animation}
-            />
-          </VictoryChart>
-          <CirclesSection
-            compared={{
-              name: 'Steps',
-              topColor: '#FFEE00',
-              bottomColor: '#FF00A7'
+      <View style={styles.viewStyles}>
+        <VictoryChart
+          domainPadding={{ x: 40, y: 0 }}
+          height={200}
+          width={350}
+        >
+          <Gradient
+            id='linearGradient'
+            topColor={Colors.moodGreenTop}
+            bottomColor={Colors.moodGreenBottom}
+          />
+          <VictoryAxis
+            style={{
+              axis: { stroke: Colors.textColor, strokeWidth: 0.5 },
+              ticks: { fill: Colors.textColor },
+              tickLabels: { padding: 4, fill: Colors.textColor }
+            }}
+            offsetY={45}
+          />
+          <VictoryAxis
+            dependentAxis
+            tickValues={[0, 10]}
+            style={{
+              axis: { stroke: null },
+              ticks: { stroke: null },
+              tickLabels: { padding: 4, fill: Colors.textColor }
             }}
           />
-        </View>
+          <VictoryBar
+            style={styles.victoryBarStyles}
+            data={mockData}
+            x='day'
+            y='mood'
+            animate={animation}
+          />
+        </VictoryChart>
+        <CirclesSection
+          compared={{
+            name: 'Steps',
+            topColor: '#FFEE00',
+            bottomColor: '#FF00A7'
+          }}
+        />
       </View>
     )
   }
 }
 
-export { Chart as default }
+const mapStateToProps = state => {
+  const moods = _.map(state.log.moods, (val, uid) => {
+    return { ...val, uid }
+  })
+
+  return selectors.moods(moods)
+}
+
+export default connect(mapStateToProps, { moodsFetch })(Chart)
