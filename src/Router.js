@@ -1,5 +1,5 @@
 import React from 'react'
-import { Scene, Router } from 'react-native-router-flux'
+import { Scene, Router, Actions } from 'react-native-router-flux'
 import LoginForm from './components/LoginForm'
 import MoodLogger from './components/MoodLogger'
 import Chart from './components/Chart'
@@ -22,15 +22,17 @@ const RouterComponent = () => (
 
       <Scene key='main'>
         <Scene
+          initial
           key='log'
           component={MoodLogger}
           title='Log Mood'
+          rightTitle='Chart'
+          onRight={() => Actions.chart()}
         />
         <Scene
-          initial
           key='chart'
           component={Chart}
-          title='Charts'
+          title='Chart'
         />
       </Scene>
     </Scene>
