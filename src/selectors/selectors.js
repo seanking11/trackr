@@ -5,20 +5,20 @@ const formatDate = date => new Date(date).toDateString().slice(4)
 
 const dateNumToString = number => {
   switch (number) {
+    case 0:
+      return 'Su'
     case 1:
-      return 'S'
-    case 2:
       return 'M'
-    case 3:
+    case 2:
       return 'T'
-    case 4:
+    case 3:
       return 'W'
-    case 5:
+    case 4:
       return 'R'
-    case 6:
+    case 5:
       return 'F'
-    case 7:
-      return 'S'
+    case 6:
+      return 'Sa'
     default:
       return number
   }
@@ -34,82 +34,40 @@ selectors.allMoods = createSelector(
 
 selectors.pastWeek = createSelector(
   selectors.allMoods,
-  allMoods => allMoods.map(entry => {
-    const dateObj = new Date(entry.dateLogged)
-    const today = new Date()
-    const weekInMs = 604800000
+  allMoods => {
+    const dataArray = []
+    let currentDayOfWeek = (new Date().getDay()) + 1
 
-    if ((today.getTime() - entry.dateLogged) < weekInMs) {
-      return ({
-        mood: entry.moodValue,
-        day: dateNumToString(dateObj.getDay()),
-        date: {
-          month: dateObj.getMonth(),
-          dayOfMonth: dateNumToString(dateObj.getDay()),
-          dayOfWeek: dateObj.getDate(),
-          hour: dateObj.getHours(),
-          formattedDate: formatDate(dateObj)
-        }
+    for (let i = 0; i < 7; i++) {
+      if (currentDayOfWeek >= 7) {
+        currentDayOfWeek = 0
+      }
+      dataArray.push({
+        moodTotal: 0,
+        numMoodsInDay: 0,
+        moodAverage: 0,
+        day: dateNumToString(currentDayOfWeek)
       })
+
+      currentDayOfWeek += 1
     }
 
-    return {}
-  })
-)
-
-selectors.pastWeek = createSelector(
-  selectors.allMoods,
-  allMoods => {
-    const dataArray = [
-      {
-        day: 6,
-        mood: 3
-      },
-      {
-        day: 7,
-        mood: 3
-      },
-      {
-        day: 1,
-        mood: 3
-      },
-      {
-        day: 2,
-        mood: 3
-      },
-      {
-        day: 3,
-        mood: 3
-      },
-      {
-        day: 4,
-        mood: 3
-      },
-      {
-        day: 5,
-        mood: 3
-      }
-    ]
     allMoods.forEach(entry => {
-      const dateObj = new Date(entry.dateLogged)
       const today = new Date()
       const weekInMs = 604800000
 
-      // Show me everything in the past week
       if ((today.getTime() - entry.dateLogged) < weekInMs) {
-        dataArray.push({
-          mood: entry.moodValue,
-          day: dateNumToString(dateObj.getDay()),
-          date: {
-            month: dateObj.getMonth(),
-            dayOfMonth: dateNumToString(dateObj.getDay()),
-            dayOfWeek: dateObj.getDate(),
-            hour: dateObj.getHours(),
-            formattedDate: formatDate(dateObj)
+        const dateObj = new Date(entry.dateLogged)
+        for (let i = 0; i < dataArray.length; i++) {
+          if (dateNumToString(dateObj.getDay()) === dataArray[i].day) {
+            dataArray[i].moodTotal += entry.moodValue
+            dataArray[i].numMoodsInDay += 1
+            dataArray[i].moodAverage = (dataArray[i].moodTotal / dataArray[i].numMoodsInDay)
           }
-        })
+        }
       }
     })
+
     return dataArray
   }
 )

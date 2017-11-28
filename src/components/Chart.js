@@ -1,26 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import _ from 'lodash'
 import {
   VictoryBar,
   VictoryChart,
   VictoryAxis
 } from 'victory-native'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { moodsFetch } from '../actions'
 import selectors from '../selectors/selectors'
 import { Gradient, CirclesSection } from './index'
 import Colors from './common/Colors'
-
-const mockData = [
-  { mood: 7, day: 'S' },
-  { mood: 3, day: 'M' },
-  { mood: 5, day: 'T' },
-  { mood: 6, day: 'W' },
-  { mood: 7, day: 'R' },
-  { mood: 10, day: 'F' },
-  { mood: 8, day: 'S' }
-]
 
 const animation = {
   duration: 2000,
@@ -88,9 +77,9 @@ class Chart extends Component {
           />
           <VictoryBar
             style={styles.victoryBarStyles}
-            data={mockData}
+            data={this.props.moods}
             x='day'
-            y='mood'
+            y='moodAverage'
             animate={animation}
           />
         </VictoryChart>
@@ -106,12 +95,8 @@ class Chart extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const moods = _.map(state.log.moods, (val, uid) => {
-    return { ...val, uid }
-  })
-
-  return selectors.moods(moods)
-}
+const mapStateToProps = state => ({
+  moods: selectors.pastWeek(state)
+})
 
 export default connect(mapStateToProps, { moodsFetch })(Chart)
