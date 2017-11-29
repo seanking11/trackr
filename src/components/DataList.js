@@ -19,6 +19,7 @@ class DataList extends Component {
             <DataListItem
               moodValue={item.moodValue}
               dateLogged={item.dateLogged}
+              key={item.dateLogged}
             />
           ))}
         </List>
