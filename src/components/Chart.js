@@ -6,6 +6,7 @@ import {
   VictoryAxis
 } from 'victory-native'
 import { View } from 'react-native'
+import AppleHealthKit from 'rn-apple-healthkit'
 import { moodsFetch } from '../actions'
 import selectors from '../selectors/selectors'
 import { Gradient, CirclesSection } from './index'
@@ -40,9 +41,31 @@ const styles = {
   }
 }
 
+const options = {
+  permissions: {
+    read: ['Height', 'Weight', 'StepCount', 'DateOfBirth', 'BodyMassIndex'],
+    write: ['Weight', 'StepCount', 'BodyMassIndex']
+  }
+}
+
 class Chart extends Component {
   componentWillMount() {
     this.props.moodsFetch()
+
+    AppleHealthKit.initHealthKit(options: Object, (err: string, results: Object) => {
+      if (err) {
+        console.log("error initializing Healthkit: ", err)
+        return
+      }
+      console.log('we good fam')
+    })
+    // // Height Example
+    // AppleHealthKit.getDateOfBirth(null, (err: Object, results: Object) => {
+    //   if (this._handleHealthkitError(err, 'getDateOfBirth')) {
+    //     return
+    //   }
+    //   console.log(results)
+    // })
   }
 
   render() {
