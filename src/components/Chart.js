@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   VictoryBar,
-  VictoryChart,
   VictoryAxis
 } from 'victory-native'
 import { View } from 'react-native'
+import Svg, { G } from 'react-native-svg'
 import { moodsFetch } from '../actions'
 import selectors from '../selectors/selectors'
 import { Gradient, CirclesSection } from './index'
@@ -16,6 +16,16 @@ const animation = {
   onLoad: { duration: 1000 }
 }
 
+const mockData = [
+  { day: 'R', steps: 223 },
+  { day: 'F', steps: 563 },
+  { day: 'Sa', steps: 623 },
+  { day: 'Su', steps: 423 },
+  { day: 'M', steps: 323 },
+  { day: 'T', steps: 823 },
+  { day: 'W', steps: 107 }
+]
+
 const styles = {
   victoryBarStyles: {
     data: {
@@ -23,6 +33,19 @@ const styles = {
       strokeWidth: 4,
       stroke: 'url(#linearGradient)',
       fill: 'url(#linearGradient)',
+      strokeLinejoin: 'round',
+      marginLeft: 10
+    },
+    parent: {
+      backgroundColor: Colors.cardBackground
+    }
+  },
+  victoryBarStyles2: {
+    data: {
+      width: 1,
+      strokeWidth: 4,
+      stroke: 'url(#linearGradient2)',
+      fill: 'url(#linearGradient2)',
       strokeLinejoin: 'round'
     },
     parent: {
@@ -31,12 +54,13 @@ const styles = {
   },
   viewStyles: {
     backgroundColor: Colors.cardBackground,
-    paddingBottom: 15,
-    marginRight: 20,
-    marginLeft: 20,
-    paddingLeft: -20,
-    marginVertical: 10,
-    borderRadius: 5
+    margin: 20,
+    borderRadius: 5,
+    maxHeight: 325,
+    flex: 1
+  },
+  svgStyles: {
+    flex: 1
   }
 }
 
@@ -48,41 +72,76 @@ class Chart extends Component {
   render() {
     return (
       <View style={styles.viewStyles}>
-        <VictoryChart
-          domainPadding={{ x: 40, y: 0 }}
-          height={200}
-          width={350}
+        <Svg
+          style={styles.svgStyles}
+          viewBox='0 0 375 300'
+          preserveAspectRatio='xMidYMin meet'
         >
-          <Gradient
-            id='linearGradient'
-            topColor={Colors.moodGreenTop}
-            bottomColor={Colors.moodGreenBottom}
-          />
-          <VictoryAxis
-            style={{
-              axis: { stroke: Colors.textColor, strokeWidth: 0.5 },
-              ticks: { fill: Colors.textColor },
-              tickLabels: { padding: 4, fill: Colors.textColor }
-            }}
-            offsetY={45}
-          />
-          <VictoryAxis
-            dependentAxis
-            tickValues={[0, 10]}
-            style={{
-              axis: { stroke: null },
-              ticks: { stroke: null },
-              tickLabels: { padding: 4, fill: Colors.textColor }
-            }}
-          />
-          <VictoryBar
-            style={styles.victoryBarStyles}
-            data={this.props.moods}
-            x='day'
-            y='moodAverage'
-            animate={animation}
-          />
-        </VictoryChart>
+          <G>
+            <Gradient
+              id='linearGradient'
+              topColor={Colors.moodGreenTop}
+              bottomColor={Colors.moodGreenBottom}
+            />
+            <Gradient
+              id='linearGradient2'
+              topColor={Colors.stepsTop}
+              bottomColor={Colors.stepsBottom}
+            />
+            <VictoryAxis
+              style={{
+                axis: { stroke: Colors.textColor, strokeWidth: 0.5 },
+                ticks: { fill: Colors.textColor },
+                tickLabels: { padding: 4, fill: Colors.textColor }
+              }}
+              offsetY={45}
+              standalone={false}
+            />
+            <VictoryBar
+              style={styles.victoryBarStyles}
+              data={this.props.moods}
+              x='day'
+              y='moodAverage'
+              animate={animation}
+              standalone={false}
+              alignment='start'
+            />
+            <VictoryAxis
+              dependentAxis
+              orientation='left'
+              standalone={false}
+              tickValues={[0, 10]}
+              domain={[0, 10]}
+              style={{
+                axis: { stroke: null },
+                ticks: { stroke: null },
+                tickLabels: { padding: 4, fill: Colors.textColor }
+              }}
+              offsetX={50}
+            />
+            <VictoryBar
+              style={styles.victoryBarStyles2}
+              data={mockData}
+              x='day'
+              y='steps'
+              animate={animation}
+              standalone={false}
+              alignment='end'
+            />
+            <VictoryAxis
+              dependentAxis
+              orientation='right'
+              standalone={false}
+              tickValues={[0, 11000]}
+              domain={[0, 11000]}
+              style={{
+                axis: { stroke: null },
+                ticks: { stroke: null },
+                tickLabels: { padding: 4, fill: Colors.textColor }
+              }}
+            />
+          </G>
+        </Svg>
         <CirclesSection
           compared={{
             name: 'Steps',
