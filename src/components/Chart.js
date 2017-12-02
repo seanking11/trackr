@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   VictoryBar,
-  VictoryAxis
+  VictoryAxis,
+  VictoryGroup
 } from 'victory-native'
 import { View } from 'react-native'
 import Svg, { G } from 'react-native-svg'
@@ -17,13 +18,13 @@ const animation = {
 }
 
 const mockData = [
-  { day: 'R', steps: 223 },
-  { day: 'F', steps: 563 },
-  { day: 'Sa', steps: 623 },
-  { day: 'Su', steps: 423 },
-  { day: 'M', steps: 323 },
-  { day: 'T', steps: 823 },
-  { day: 'W', steps: 107 }
+  { day: 'Su', steps: 4230 },
+  { day: 'M', steps: 3230 },
+  { day: 'T', steps: 8230 },
+  { day: 'W', steps: 1070 },
+  { day: 'R', steps: 2230 },
+  { day: 'F', steps: 5630 },
+  { day: 'Sa', steps: 6230 }
 ]
 
 const styles = {
@@ -64,6 +65,8 @@ const styles = {
   }
 }
 
+const domainPadding = { x: 30, y: 10 }
+
 class Chart extends Component {
   componentWillMount() {
     this.props.moodsFetch()
@@ -96,15 +99,8 @@ class Chart extends Component {
               }}
               offsetY={45}
               standalone={false}
-            />
-            <VictoryBar
-              style={styles.victoryBarStyles}
-              data={this.props.moods}
-              x='day'
-              y='moodAverage'
-              animate={animation}
-              standalone={false}
-              alignment='start'
+              tickValues={['Su', 'M', 'T', 'W', 'R', 'F', 'Sa']}
+              domainPadding={domainPadding}
             />
             <VictoryAxis
               dependentAxis
@@ -119,27 +115,40 @@ class Chart extends Component {
               }}
               offsetX={50}
             />
-            <VictoryBar
-              style={styles.victoryBarStyles2}
-              data={mockData}
-              x='day'
-              y='steps'
-              animate={animation}
-              standalone={false}
-              alignment='end'
-            />
             <VictoryAxis
               dependentAxis
               orientation='right'
               standalone={false}
-              tickValues={[0, 11000]}
-              domain={[0, 11000]}
+              tickValues={[0, 1000]}
+              domain={[0, 1000]}
               style={{
                 axis: { stroke: null },
                 ticks: { stroke: null },
                 tickLabels: { padding: 4, fill: Colors.textColor }
               }}
             />
+            <VictoryGroup
+              standalone={false}
+              offset={10}
+              domainPadding={domainPadding}
+            >
+              <VictoryBar
+                style={styles.victoryBarStyles}
+                data={this.props.moods}
+                x='day'
+                y='moodAverage'
+                animate={animation}
+                standalone={false}
+              />
+              <VictoryBar
+                style={styles.victoryBarStyles2}
+                data={mockData}
+                x='day'
+                y={(d) => d.steps / 1000}
+                animate={animation}
+                standalone={false}
+              />
+            </VictoryGroup>
           </G>
         </Svg>
         <CirclesSection
