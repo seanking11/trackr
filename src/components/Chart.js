@@ -28,7 +28,7 @@ const mockData = [
 ]
 
 const styles = {
-  victoryBarStyles: {
+  leftBarStyles: {
     data: {
       width: 1,
       strokeWidth: 4,
@@ -41,7 +41,7 @@ const styles = {
       backgroundColor: Colors.cardBackground
     }
   },
-  victoryBarStyles2: {
+  rightBarStyles: {
     data: {
       width: 1,
       strokeWidth: 4,
@@ -53,7 +53,7 @@ const styles = {
       backgroundColor: Colors.cardBackground
     }
   },
-  viewStyles: {
+  cardViewStyles: {
     backgroundColor: Colors.cardBackground,
     margin: 20,
     borderRadius: 5,
@@ -74,7 +74,7 @@ class Chart extends Component {
 
   render() {
     return (
-      <View style={styles.viewStyles}>
+      <View style={styles.cardViewStyles}>
         <Svg
           style={styles.svgStyles}
           viewBox='0 0 375 300'
@@ -133,7 +133,7 @@ class Chart extends Component {
               domainPadding={domainPadding}
             >
               <VictoryBar
-                style={styles.victoryBarStyles}
+                style={styles.leftBarStyles}
                 data={this.props.moods}
                 x='day'
                 y='moodAverage'
@@ -141,7 +141,7 @@ class Chart extends Component {
                 standalone={false}
               />
               <VictoryBar
-                style={styles.victoryBarStyles2}
+                style={styles.rightBarStyles}
                 data={mockData}
                 x='day'
                 y={(d) => d.steps / 1000}
