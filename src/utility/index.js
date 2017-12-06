@@ -21,7 +21,7 @@ export const dateNumToString = number => {
 
 export const formatDate = date => new Date(date).toDateString().slice(4)
 
-export const createDateArray = () => {
+export const createDateArray = (createObjects = true) => {
   const array = []
   let currentDayOfWeek = (new Date().getDay()) + 1
 
@@ -29,12 +29,17 @@ export const createDateArray = () => {
     if (currentDayOfWeek >= 7) {
       currentDayOfWeek = 0
     }
-    array.push({
-      moodTotal: 0,
-      numMoodsInDay: 0,
-      moodAverage: 0,
-      day: dateNumToString(currentDayOfWeek)
-    })
+    if (createObjects) {
+      array.push({
+        moodTotal: 0,
+        numMoodsInDay: 0,
+        moodAverage: 0,
+        day: dateNumToString(currentDayOfWeek)
+      })
+    } else {
+      array.push(dateNumToString(currentDayOfWeek))
+    }
+
 
     currentDayOfWeek += 1
   }
