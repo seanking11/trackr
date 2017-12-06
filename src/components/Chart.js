@@ -11,6 +11,7 @@ import { moodsFetch } from '../actions'
 import selectors from '../selectors/selectors'
 import { Gradient, CirclesSection } from './index'
 import Colors from './common/Colors'
+import { createDateArray } from '../utility'
 
 const animation = {
   duration: 2000,
@@ -99,7 +100,7 @@ class Chart extends Component {
               }}
               offsetY={45}
               standalone={false}
-              tickValues={['W', 'R', 'F', 'Sa', 'Su', 'M', 'T']}
+              tickValues={createDateArray(false)}
               domainPadding={domainPadding}
             />
             <VictoryAxis
