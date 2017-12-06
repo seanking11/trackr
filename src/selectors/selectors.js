@@ -22,7 +22,7 @@ selectors.pastWeek = createSelector(
 
     allMoods.forEach(entry => {
       const today = new Date()
-      const weekInMs = 604800000
+      const weekInMs = 518400000
 
       if ((today.getTime() - entry.dateLogged) < weekInMs) {
         const dateObj = new Date(entry.dateLogged)

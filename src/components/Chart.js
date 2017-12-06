@@ -18,13 +18,13 @@ const animation = {
 }
 
 const mockData = [
-  { day: 'Su', steps: 4230 },
-  { day: 'M', steps: 3230 },
-  { day: 'T', steps: 8230 },
   { day: 'W', steps: 1070 },
   { day: 'R', steps: 2230 },
   { day: 'F', steps: 5630 },
-  { day: 'Sa', steps: 6230 }
+  { day: 'Sa', steps: 6230 },
+  { day: 'Su', steps: 4230 },
+  { day: 'M', steps: 3230 },
+  { day: 'T', steps: 8230 }
 ]
 
 const styles = {
@@ -99,7 +99,7 @@ class Chart extends Component {
               }}
               offsetY={45}
               standalone={false}
-              tickValues={['Su', 'M', 'T', 'W', 'R', 'F', 'Sa']}
+              tickValues={['W', 'R', 'F', 'Sa', 'Su', 'M', 'T']}
               domainPadding={domainPadding}
             />
             <VictoryAxis
