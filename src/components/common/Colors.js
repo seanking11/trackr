@@ -1,4 +1,5 @@
 const Colors = {
+  activeCheckmark: '#5460BD',
   backgroundGray: '#211F31',
   cardBackground: '#2A2D40',
   moodGreenBottom: '#00F9FF',
