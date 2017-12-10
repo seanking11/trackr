@@ -18,16 +18,6 @@ const animation = {
   onLoad: { duration: 1000 }
 }
 
-const mockData = [
-  { day: 'W', steps: 1070 },
-  { day: 'R', steps: 2230 },
-  { day: 'F', steps: 5630 },
-  { day: 'Sa', steps: 6230 },
-  { day: 'Su', steps: 4230 },
-  { day: 'M', steps: 3230 },
-  { day: 'T', steps: 8230 }
-]
-
 const styles = {
   leftBarStyles: {
     data: {
@@ -66,7 +56,7 @@ const styles = {
   }
 }
 
-const domainPadding = { x: 30, y: 10 }
+const domainPadding = { x: 30, y: 15 }
 
 class Chart extends Component {
   componentWillMount() {
@@ -89,8 +79,8 @@ class Chart extends Component {
             />
             <Gradient
               id='linearGradient2'
-              topColor={Colors.stepsTop}
-              bottomColor={Colors.stepsBottom}
+              topColor={this.props.compared.colors.top}
+              bottomColor={this.props.compared.colors.bottom}
             />
             <VictoryAxis
               style={{
@@ -120,8 +110,8 @@ class Chart extends Component {
               dependentAxis
               orientation='right'
               standalone={false}
-              tickValues={[0, 1000]}
-              domain={[0, 1000]}
+              tickValues={this.props.compared.domain}
+              domain={this.props.compared.domain}
               style={{
                 axis: { stroke: null },
                 ticks: { stroke: null },
@@ -143,9 +133,9 @@ class Chart extends Component {
               />
               <VictoryBar
                 style={styles.rightBarStyles}
-                data={mockData}
+                data={this.props.compared.data}
                 x='day'
-                y={(d) => d.steps / 1000}
+                y={this.props.compared.y}
                 animate={animation}
                 standalone={false}
               />
@@ -154,9 +144,9 @@ class Chart extends Component {
         </Svg>
         <CirclesSection
           compared={{
-            name: 'Steps',
-            topColor: '#FFEE00',
-            bottomColor: '#FF00A7'
+            name: this.props.compared.category,
+            topColor: this.props.compared.colors.top,
+            bottomColor: this.props.compared.colors.bottom
           }}
         />
       </View>
@@ -165,7 +155,9 @@ class Chart extends Component {
 }
 
 const mapStateToProps = state => ({
-  moods: selectors.pastWeek(state)
+  moods: selectors.pastWeek(state),
+  comparedId: state.chart.comparedId,
+  compared: state.chart.compared
 })
 
 export default connect(mapStateToProps, { moodsFetch })(Chart)
