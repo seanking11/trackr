@@ -5,7 +5,7 @@ import Gradient from './Gradient'
 const GradientCircle = ({
   topColor,
   bottomColor,
-  size,
+  size = 25,
   strokeWidth = 2.5
 }) => (
   <Svg

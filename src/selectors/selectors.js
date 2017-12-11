@@ -1,28 +1,11 @@
 import { createSelector } from 'reselect'
+import {
+  formatDate,
+  dateNumToString,
+  createDateArray
+} from '../utility'
 
 const selectors = {}
-const formatDate = date => new Date(date).toDateString().slice(4)
-
-const dateNumToString = number => {
-  switch (number) {
-    case 0:
-      return 'Su'
-    case 1:
-      return 'M'
-    case 2:
-      return 'T'
-    case 3:
-      return 'W'
-    case 4:
-      return 'R'
-    case 5:
-      return 'F'
-    case 6:
-      return 'Sa'
-    default:
-      return number
-  }
-}
 
 selectors.log = state => state.log
 selectors.moods = state => state.log.moods
@@ -35,26 +18,11 @@ selectors.allMoods = createSelector(
 selectors.pastWeek = createSelector(
   selectors.allMoods,
   allMoods => {
-    const dataArray = []
-    let currentDayOfWeek = (new Date().getDay()) + 1
-
-    for (let i = 0; i < 7; i++) {
-      if (currentDayOfWeek >= 7) {
-        currentDayOfWeek = 0
-      }
-      dataArray.push({
-        moodTotal: 0,
-        numMoodsInDay: 0,
-        moodAverage: 0,
-        day: dateNumToString(currentDayOfWeek)
-      })
-
-      currentDayOfWeek += 1
-    }
+    const dataArray = createDateArray()
 
     allMoods.forEach(entry => {
       const today = new Date()
-      const weekInMs = 604800000
+      const weekInMs = 518400000
 
       if ((today.getTime() - entry.dateLogged) < weekInMs) {
         const dateObj = new Date(entry.dateLogged)

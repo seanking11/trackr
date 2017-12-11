@@ -2,7 +2,7 @@ import React from 'react'
 import { Scene, Router, Actions } from 'react-native-router-flux'
 import LoginForm from './components/LoginForm'
 import MoodLogger from './components/MoodLogger'
-import Chart from './components/Chart'
+import ChartPage from './components/ChartPage'
 import Colors from './components/common/Colors'
 
 const RouterComponent = () => (
@@ -31,7 +31,7 @@ const RouterComponent = () => (
         />
         <Scene
           key='chart'
-          component={Chart}
+          component={ChartPage}
           title='Chart'
         />
       </Scene>
