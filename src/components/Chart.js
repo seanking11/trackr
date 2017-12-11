@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import {
   VictoryBar,
   VictoryAxis,
-  VictoryGroup
+  VictoryGroup,
+  VictoryLabel
 } from 'victory-native'
 import { View } from 'react-native'
 import Svg, { G } from 'react-native-svg'
@@ -102,9 +103,12 @@ class Chart extends Component {
               style={{
                 axis: { stroke: null },
                 ticks: { stroke: null },
-                tickLabels: { padding: 4, fill: Colors.textColor }
+                tickLabels: { padding: 4, fill: Colors.textColor },
+                axisLabel: { fill: Colors.textColor }
               }}
               offsetX={50}
+              label='Mood'
+              axisLabelComponent={<VictoryLabel dy={-120} textAnchor='start' />}
             />
             <VictoryAxis
               dependentAxis
@@ -115,8 +119,11 @@ class Chart extends Component {
               style={{
                 axis: { stroke: null },
                 ticks: { stroke: null },
-                tickLabels: { padding: 4, fill: Colors.textColor }
+                tickLabels: { padding: 4, fill: Colors.textColor },
+                axisLabel: { fill: Colors.textColor }
               }}
+              label={this.props.compared.category}
+              axisLabelComponent={<VictoryLabel dy={-133} />}
             />
             <VictoryGroup
               standalone={false}
