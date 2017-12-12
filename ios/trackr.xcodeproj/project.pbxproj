@@ -39,7 +39,6 @@
 		55F3657BEFC6464593A37C07 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F3CFEB73232D42C5B8080A63 /* libRNVectorIcons.a */; };
 		588F3683F0364FDBBFC9F497 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C95007418A8346E2806F6481 /* Ionicons.ttf */; };
 		5C1100D58E5D4812B4EDF620 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0658EC4253E849DDA40D77B0 /* FontAwesome.ttf */; };
-		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		5F85E39FC5304FF8BCDF4987 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D81B28652E7F4442B16D5572 /* Entypo.ttf */; };
 		602D491B1872490EBA425E09 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5FD9126CDBB34A59BFB11BDC /* Zocial.ttf */; };
 		6CA9727D1091482592D04345 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C92B3D82F3E9473DA1D84B76 /* Foundation.ttf */; };
@@ -48,7 +47,8 @@
 		A1D02EFD70284AF486412531 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EFF1A18EB71A4AF58823CC8F /* EvilIcons.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		CD19FF09AEFB428D97CE7222 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F1B27406A8FE400E94A88519 /* MaterialIcons.ttf */; };
-		D7454F0D1FCF5C4C00148856 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7454F0C1FCF5C4C00148856 /* HealthKit.framework */; };
+		D7DEE1781FDF43630077C840 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		D7DEE17C1FDF45910077C840 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7DEE17B1FDF45910077C840 /* HealthKit.framework */; };
 		DBBB2477DDC64FBB8D78B57F /* libRCTAppleHealthKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D221ADD6FD4835919EA886 /* libRCTAppleHealthKit.a */; };
 		E7A7C57750294F8EBEAD256D /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8734CA230B6460C93A5E7BD /* libRNSVG.a */; };
 		EF5A910EE5DB47BDB25F68EC /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC044B793CFB40FC9C8A7AE6 /* Octicons.ttf */; };
@@ -367,7 +367,7 @@
 		C92B3D82F3E9473DA1D84B76 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		C95007418A8346E2806F6481 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		D7454F0A1FCF5C4C00148856 /* trackr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = trackr.entitlements; path = trackr/trackr.entitlements; sourceTree = "<group>"; };
-		D7454F0C1FCF5C4C00148856 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		D7DEE17B1FDF45910077C840 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		D81B28652E7F4442B16D5572 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		DC044B793CFB40FC9C8A7AE6 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		E191516781BB470E9BF26728 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
@@ -391,9 +391,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
-				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
+				D7DEE1781FDF43630077C840 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
-				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
@@ -402,9 +401,9 @@
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
-				D7454F0D1FCF5C4C00148856 /* HealthKit.framework in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				55F3657BEFC6464593A37C07 /* libRNVectorIcons.a in Frameworks */,
+				D7DEE17C1FDF45910077C840 /* HealthKit.framework in Frameworks */,
 				E7A7C57750294F8EBEAD256D /* libRNSVG.a in Frameworks */,
 				DBBB2477DDC64FBB8D78B57F /* libRCTAppleHealthKit.a in Frameworks */,
 			);
@@ -606,6 +605,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				A4F9E4AF9F0A46BC9B4D5D72 /* Resources */,
 				D7454F0B1FCF5C4C00148856 /* Frameworks */,
+				D71187AB1FDF51130055E2C8 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -650,6 +650,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D71187AB1FDF51130055E2C8 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				F3CFEB73232D42C5B8080A63 /* libRNVectorIcons.a */,
+				C8734CA230B6460C93A5E7BD /* libRNSVG.a */,
+				C2D221ADD6FD4835919EA886 /* libRCTAppleHealthKit.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		D7454ED91FCF569300148856 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -661,7 +671,7 @@
 		D7454F0B1FCF5C4C00148856 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D7454F0C1FCF5C4C00148856 /* HealthKit.framework */,
+				D7DEE17B1FDF45910077C840 /* HealthKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -764,7 +774,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 610;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -1302,6 +1312,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/trackr.app/trackr";
 			};
@@ -1332,6 +1343,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/trackr.app/trackr";
 			};
@@ -1358,6 +1370,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sean.king.trackr;
 				PRODUCT_NAME = trackr;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1383,6 +1396,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.sean.king.trackr;
 				PRODUCT_NAME = trackr;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1535,15 +1549,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1576,8 +1594,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1585,6 +1605,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
