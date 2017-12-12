@@ -21,7 +21,11 @@ export const dateNumToString = number => {
 
 export const formatDate = date => new Date(date).toDateString().slice(4)
 
-export const createDateArray = (createObjects = true) => {
+// If passed an object, creates an array of objects that has all the properties
+// you passed in AND now has a day: property that is the past 7 days,
+// starting with today, as a string ie. 'W', 'Sa', etc.
+// If no object is passed, it returns an array of strings of days of the week
+export const createDateArray = (objectToMerge) => {
   const array = []
   let currentDayOfWeek = (new Date().getDay()) + 1
 
@@ -29,17 +33,14 @@ export const createDateArray = (createObjects = true) => {
     if (currentDayOfWeek >= 7) {
       currentDayOfWeek = 0
     }
-    if (createObjects) {
+    if (objectToMerge) {
       array.push({
-        moodTotal: 0,
-        numMoodsInDay: 0,
-        moodAverage: 0,
+        ...objectToMerge,
         day: dateNumToString(currentDayOfWeek)
       })
     } else {
       array.push(dateNumToString(currentDayOfWeek))
     }
-
 
     currentDayOfWeek += 1
   }
