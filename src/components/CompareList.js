@@ -27,12 +27,12 @@ const CompareList = ({ comparedOptions }) => (
     <List
       containerStyle={styles.listContainerStyles}
     >
-      {comparedOptions.map(item => (
+      {Object.keys(comparedOptions).map(item => (
         <CompareListItem
-          key={item.id}
-          category={item.category}
-          colors={item.colors}
-          id={item.id}
+          key={comparedOptions[item].id}
+          category={comparedOptions[item].category}
+          colors={comparedOptions[item].colors}
+          id={comparedOptions[item].id}
         />
       ))}
     </List>
