@@ -33,6 +33,7 @@
 		"jest": "21.2.1",
 		"react-native-router-flux": "^4.0.0-beta.22",
 		"react-test-renderer": "16.0.0-beta.5",
+		"redux-devtools-extension": "^2.13.2",
 		"reselect": "^3.0.1"
 	},
 	"jest": {
