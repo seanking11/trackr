@@ -1,7 +1,10 @@
 import {
-  UPDATE_COMPARED_ID
+  UPDATE_COMPARED_ID,
+  STEPS_FETCH_SUCCESS,
+  SLEEP_FETCH_SUCCESS
 } from '../actions/types'
 import Colors from '../components/common/Colors'
+import { makeSleepDataArray } from '../utility'
 
 // Find better way to store options - maybe in firebase?
 const initialState = {
@@ -9,7 +12,7 @@ const initialState = {
   compared: {
     category: 'Steps',
     y: (d) => d.steps / 1000,
-    domain: [0, 1000],
+    domain: [0, 10000],
     data: [
       { day: 'W', steps: 1070 },
       { day: 'R', steps: 2230 },
@@ -24,12 +27,12 @@ const initialState = {
       bottom: Colors.stepsBottom
     }
   },
-  comparedOptions: [
-    {
+  comparedOptions: {
+    0: {
       id: 0,
       category: 'Steps',
       y: (d) => d.steps / 1000,
-      domain: [0, 1000],
+      domain: [0, 10000],
       data: [
         { day: 'W', steps: 1070 },
         { day: 'R', steps: 2230 },
@@ -44,32 +47,39 @@ const initialState = {
         bottom: Colors.stepsBottom
       }
     },
-    {
+    1: {
       id: 1,
       category: 'Sleep',
       y: 'sleep',
       domain: [0, 10],
-      data: [
-        { day: 'W', sleep: 6 },
-        { day: 'R', sleep: 7 },
-        { day: 'F', sleep: 6.5 },
-        { day: 'Sa', sleep: 8 },
-        { day: 'Su', sleep: 7 },
-        { day: 'M', sleep: 4 },
-        { day: 'T', sleep: 5 }
-      ],
+      data: [],
       colors: {
         top: Colors.sleepTop,
         bottom: Colors.sleepBottom
       }
     }
-  ]
+  }
 }
 
 export default (state = initialState, action) => {
+  console.log(action)
   switch (action.type) {
     case UPDATE_COMPARED_ID:
       return { ...state, comparedId: action.comparedId, compared: state.comparedOptions[action.comparedId] }
+    case STEPS_FETCH_SUCCESS:
+      return { ...state, steps: action.payload }
+    case SLEEP_FETCH_SUCCESS:
+      return {
+        ...state,
+        sleep: action.payload,
+        comparedOptions: {
+          ...state.comparedOptions,
+          1: {
+            ...state.comparedOptions[1],
+            data: makeSleepDataArray(action.payload)
+          }
+        }
+      }
     default:
       return state
   }
