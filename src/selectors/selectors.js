@@ -18,7 +18,11 @@ selectors.allMoods = createSelector(
 selectors.pastWeek = createSelector(
   selectors.allMoods,
   allMoods => {
-    const dataArray = createDateArray()
+    const dataArray = createDateArray({
+      moodTotal: 0,
+      numMoodsInDay: 0,
+      moodAverage: 0
+    })
 
     allMoods.forEach(entry => {
       const today = new Date()
