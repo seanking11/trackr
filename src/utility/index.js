@@ -46,3 +46,23 @@ export const createDateArray = (objectToMerge) => {
   }
   return array
 }
+
+export const makeSleepDataArray = (rawSleepData) => {
+  const dataArray = createDateArray({ sleep: 0 })
+
+  rawSleepData.forEach(entry => {
+    if (entry.value === 'ASLEEP') {
+      const dateObj = new Date(entry.endDate)
+      for (let i = 0; i < dataArray.length; i++) {
+        if (dateNumToString(dateObj.getDay()) === dataArray[i].day) {
+          const start = new Date(entry.startDate)
+          const end = new Date(entry.endDate)
+          const amtToAdd = (Math.abs(start - end) / 36e5) // Converts to hours
+          dataArray[i].sleep += amtToAdd
+        }
+      }
+    }
+  })
+
+  return dataArray
+}
