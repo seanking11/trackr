@@ -8,15 +8,15 @@ import {
 import { View } from 'react-native'
 import AppleHealthKit from 'rn-apple-healthkit'
 import Svg, { G } from 'react-native-svg'
-import { moodsFetch } from '../actions'
+import { moodsFetch, sleepFetch } from '../actions'
 import selectors from '../selectors/selectors'
 import { Gradient, CirclesSection } from './index'
 import Colors from './common/Colors'
 import { createDateArray } from '../utility'
 
 const animation = {
-  duration: 2000,
-  onLoad: { duration: 1000 }
+  duration: 500,
+  onLoad: { duration: 500 }
 }
 
 const styles = {
@@ -59,7 +59,7 @@ const styles = {
 
 const options = {
   permissions: {
-    read: ['Height', 'Weight', 'StepCount', 'DateOfBirth', 'BodyMassIndex'],
+    read: ['Height', 'Weight', 'StepCount', 'DateOfBirth', 'SleepAnalysis'],
     write: ['Weight', 'StepCount', 'BodyMassIndex']
   }
 }
@@ -70,20 +70,14 @@ class Chart extends Component {
   componentWillMount() {
     this.props.moodsFetch()
 
+    // eslint-disable-next-line no-unused-vars
     AppleHealthKit.initHealthKit(options: Object, (err: string, results: Object) => {
       if (err) {
-        console.log("error initializing Healthkit: ", err)
-        return
+        console.log('error initializing Healthkit: ', err) // eslint-disable-line no-console
       }
-      console.log('we good fam')
+
+      this.props.sleepFetch()
     })
-    // // Height Example
-    // AppleHealthKit.getDateOfBirth(null, (err: Object, results: Object) => {
-    //   if (this._handleHealthkitError(err, 'getDateOfBirth')) {
-    //     return
-    //   }
-    //   console.log(results)
-    // })
   }
 
   render() {
@@ -133,7 +127,7 @@ class Chart extends Component {
               dependentAxis
               orientation='right'
               standalone={false}
-              tickValues={this.props.compared.domain}
+              tickValues={this.props.compared.tickValues || this.props.compared.domain}
               domain={this.props.compared.domain}
               style={{
                 axis: { stroke: null },
@@ -183,4 +177,4 @@ const mapStateToProps = state => ({
   compared: state.chart.compared
 })
 
-export default connect(mapStateToProps, { moodsFetch })(Chart)
+export default connect(mapStateToProps, { moodsFetch, sleepFetch })(Chart)
