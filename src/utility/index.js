@@ -1,3 +1,6 @@
+const weekdays = ['Su', 'M', 'T', 'W', 'R', 'F', 'Sa']
+const dayInMS = 86400000
+
 export const dateNumToString = number => {
   switch (number) {
     case 0:
@@ -21,6 +24,16 @@ export const dateNumToString = number => {
 
 export const formatDate = date => new Date(date).toDateString().slice(4)
 
+export const lastOccurrenceOf = (weekDay) => {
+  const desiredIndex = weekdays.indexOf(weekDay)
+  const currentDate = new Date()
+  const daysDifference = (currentDate.getDay() - desiredIndex + 6) % 7 + 1 // eslint-disable-line no-mixed-operators
+  if (daysDifference === 7) {
+    return new Date()
+  }
+  return new Date(currentDate.getTime() - (dayInMS * daysDifference))
+}
+
 // If passed an object, creates an array of objects that has all the properties
 // you passed in AND now has a day: property that is the past 7 days,
 // starting with today, as a string ie. 'W', 'Sa', etc.
@@ -36,6 +49,7 @@ export const createDateArray = (objectToMerge) => {
     if (objectToMerge) {
       array.push({
         ...objectToMerge,
+        fullDate: lastOccurrenceOf(dateNumToString(currentDayOfWeek)),
         day: dateNumToString(currentDayOfWeek)
       })
     } else {
