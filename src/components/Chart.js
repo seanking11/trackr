@@ -8,7 +8,7 @@ import {
 import { View } from 'react-native'
 import AppleHealthKit from 'rn-apple-healthkit'
 import Svg, { G } from 'react-native-svg'
-import { moodsFetch, sleepFetch } from '../actions'
+import { moodsFetch, stepsFetchWeek, sleepFetch } from '../actions'
 import selectors from '../selectors/selectors'
 import { Gradient, CirclesSection } from './index'
 import Colors from './common/Colors'
@@ -75,7 +75,7 @@ class Chart extends Component {
       if (err) {
         console.log('error initializing Healthkit: ', err) // eslint-disable-line no-console
       }
-
+      this.props.stepsFetchWeek()
       this.props.sleepFetch()
     })
   }
@@ -177,4 +177,4 @@ const mapStateToProps = state => ({
   compared: state.chart.compared
 })
 
-export default connect(mapStateToProps, { moodsFetch, sleepFetch })(Chart)
+export default connect(mapStateToProps, { moodsFetch, stepsFetchWeek, sleepFetch })(Chart)
