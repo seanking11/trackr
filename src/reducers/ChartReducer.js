@@ -12,15 +12,16 @@ const initialState = {
   compared: {
     category: 'Steps',
     y: (d) => d.steps / 1000,
-    domain: [0, 10000],
+    domain: { y: [0, 10000] },
+    tickValues: [0, 10000],
     data: [
-      { day: 'W', steps: 1070 },
-      { day: 'R', steps: 2230 },
-      { day: 'F', steps: 5630 },
-      { day: 'Sa', steps: 6230 },
-      { day: 'Su', steps: 4230 },
-      { day: 'M', steps: 3230 },
-      { day: 'T', steps: 8230 }
+      { day: 'R', steps: 7535 },
+      { day: 'F', steps: 6600 },
+      { day: 'Sa', steps: 6137 },
+      { day: 'Su', steps: 929 },
+      { day: 'M', steps: 2305 },
+      { day: 'T', steps: 1929 },
+      { day: 'W', steps: 1036 }
     ],
     colors: {
       top: Colors.stepsTop,
@@ -32,15 +33,16 @@ const initialState = {
       id: 0,
       category: 'Steps',
       y: (d) => d.steps / 1000,
-      domain: [0, 10000],
+      domain: { y: [0, 10000] },
+      tickValues: [0, 10000],
       data: [
-        { day: 'W', steps: 1070 },
-        { day: 'R', steps: 2230 },
-        { day: 'F', steps: 5630 },
-        { day: 'Sa', steps: 6230 },
-        { day: 'Su', steps: 4230 },
-        { day: 'M', steps: 3230 },
-        { day: 'T', steps: 8230 }
+        { day: 'R', steps: 7535 },
+        { day: 'F', steps: 6600 },
+        { day: 'Sa', steps: 6137 },
+        { day: 'Su', steps: 929 },
+        { day: 'M', steps: 2305 },
+        { day: 'T', steps: 1929 },
+        { day: 'W', steps: 1036 }
       ],
       colors: {
         top: Colors.stepsTop,
@@ -67,7 +69,17 @@ export default (state = initialState, action) => {
     case UPDATE_COMPARED_ID:
       return { ...state, comparedId: action.comparedId, compared: state.comparedOptions[action.comparedId] }
     case STEPS_FETCH_SUCCESS:
-      return { ...state, steps: action.payload }
+      return {
+        ...state,
+        sleep: action.payload,
+        comparedOptions: {
+          ...state.comparedOptions,
+          0: {
+            ...state.comparedOptions[0],
+            data: action.payload
+          }
+        }
+      }
     case SLEEP_FETCH_SUCCESS:
       return {
         ...state,
