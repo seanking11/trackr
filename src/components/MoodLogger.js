@@ -14,16 +14,23 @@ class MoodLogger extends Component {
     this.props.logMood({ moodValue, dateLogged })
   }
 
+  sliderValueChange = value => {
+    this.setState({
+      sliderVal: value
+    })
+  }
+
   render() {
     return (
-      <View>
+      <View style={{ marginTop: 40 }}>
         <View>
-          <Text style={{ color: 'white' }}>{this.props.moodValue || 5}</Text>
+          <Text style={{ color: 'white' }}>{this.state.sliderVal}</Text>
           <Slider
             maximumValue={10}
             minimumValue={0}
             step={1}
             value={this.state.sliderVal}
+            onValueChange={value => this.sliderValueChange(value)}
             onSlidingComplete={value => this.props.updateSlider(value)}
           />
         </View>
