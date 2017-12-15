@@ -55,8 +55,8 @@ class SingleChart extends Component {
         >
           <Gradient
             id='linearGradient'
-            topColor={Colors.moodGreenTop}
-            bottomColor={Colors.moodGreenBottom}
+            topColor={Colors.moodTop}
+            bottomColor={Colors.moodBottom}
           />
           <VictoryAxis
             style={{

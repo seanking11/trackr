@@ -91,8 +91,8 @@ class Chart extends Component {
           <G>
             <Gradient
               id='linearGradient'
-              topColor={Colors.moodGreenTop}
-              bottomColor={Colors.moodGreenBottom}
+              topColor={Colors.moodTop}
+              bottomColor={Colors.moodBottom}
             />
             <Gradient
               id='linearGradient2'
