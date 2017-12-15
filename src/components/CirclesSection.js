@@ -15,8 +15,8 @@ const styles = {
 const CirclesSection = ({ compared }) => (
   <View style={styles.viewStyle}>
     <CircleLabel
-      topColor={Colors.moodGreenTop}
-      bottomColor={Colors.moodGreenBottom}
+      topColor={Colors.moodTop}
+      bottomColor={Colors.moodBottom}
     >
       Mood
     </CircleLabel>
