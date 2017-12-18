@@ -11,6 +11,7 @@ Trackr is a mobile application written in react-native that tracks a users mood 
  - Display mood over time on a chart
  - Compare mood VS other data
  - Pull in other data from HealthKit
+ - Custom smiley slider - WIP
  - Compare data over different forms of time (W, M, Y) - WIP
 
 ## Mockups
