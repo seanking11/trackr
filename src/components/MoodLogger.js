@@ -9,7 +9,8 @@ class MoodLogger extends Component {
   state = { sliderVal: 5 }
 
   onButtonPress = () => {
-    const { moodValue, dateLogged } = this.props
+    const { moodValue } = this.props
+    const dateLogged = new Date().getTime()
 
     this.props.logMood({ moodValue, dateLogged })
   }
@@ -48,9 +49,9 @@ class MoodLogger extends Component {
 }
 
 const mapStateToProps = state => {
-  const { moodValue, dateLogged } = state.log
+  const { moodValue } = state.log
 
-  return { moodValue, dateLogged }
+  return { moodValue }
 }
 
 export default connect(mapStateToProps, { updateSlider, logMood })(MoodLogger)

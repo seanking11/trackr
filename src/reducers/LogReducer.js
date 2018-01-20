@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
   console.log(action)
   switch (action.type) {
     case UPDATE_SLIDER:
-      return { ...state, moodValue: action.value, dateLogged: new Date().getTime() }
+      return { ...state, moodValue: action.value }
     case MOODS_FETCH_SUCCESS:
       return { ...state, moods: action.payload }
     default:
